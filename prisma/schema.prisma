@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+
+  answers Answer[]
+}
+
+// model Post {
+//   id        Int     @id @default(autoincrement())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   userid    Int
+//   user      User @relation(fields: [userid], references: [id])
+// }
+
+model QCM {
+  id        Int     @id @default(autoincrement())
+  title     String
+  imageSrc  String
+  questions Question[]
+}
+
+model Question {
+  id       Int   @id @default(autoincrement())
+  statement String
+  qcmId    Int
+  qcm      QCM      @relation(fields: [qcmId], references: [id])
+  choices Choice[]
+}
+
+model Choice {
+  id       Int   @id @default(autoincrement())
+  content  String
+  isValid  Boolean
+  questionId  Int
+  question  Question  @relation(fields: [questionId], references: [id])
+  answers  Answer[]
+}
+
+model Answer {
+  id       Int   @id @default(autoincrement())
+  value    Boolean
+  choiceId  Int
+  choices  Choice  @relation(fields: [choiceId], references: [id])
+  userId  Int
+  users   User   @relation(fields: [userId], references: [id])
+}

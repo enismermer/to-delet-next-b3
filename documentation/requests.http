@@ -1,0 +1,42 @@
+###
+POST http://localhost:3000/api/toto
+Content-Type: application/json
+
+{
+    "data": {
+        "name": "toto"
+    }
+}
+
+###
+GET http://localhost:3000/api/toto/6
+
+
+###
+POST http://localhost:3000/api/qcms
+Content-Type: application/json
+
+{
+    "title": "Retour vers le futur",
+    "imageSrc": "https://img.nrj.fr/lHZA7SK7LbXdvuMLSIvo2HB4UPw=/medias%2F2023%2F01%2Fv4nj2dn9trqhdcxsb485ebc-vakqybhjcx3756fvpl0_63bd6dc069043.jpg"
+}
+
+
+
+###
+GET http://localhost:3000/api/qcms/
+
+###
+GET http://localhost:3000/api/qcms/1
+
+###
+PUT http://localhost:3000/api/qcms/1
+Content-Type: application/json
+
+{
+    "title": "Retour vers le futur 2",
+    "imageSrc": "https://www.ecranlarge.com/content/uploads/2020/08/fnjqn51p5rf9vslu9w21sdunt9n-755-scaled.jpg"
+}
+
+###
+DELETE http://localhost:3000/api/qcms/1
